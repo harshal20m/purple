@@ -12,14 +12,6 @@ A production-ready full-stack user management system with authentication, role-b
 - ✅ Protected routes and API endpoints
 - ✅ Automatic token refresh handling
 
-### Health & Monitoring
-
-- ✅ Comprehensive health check endpoints
-- ✅ Database connection monitoring
-- ✅ System resource monitoring (memory, uptime)
-- ✅ Kubernetes/Docker ready (liveness & readiness probes)
-- ✅ Load balancer compatible health checks
-
 ### User Management
 
 - ✅ User registration and login
@@ -38,12 +30,9 @@ A production-ready full-stack user management system with authentication, role-b
 
 - ✅ Rate limiting (100 requests/15min globally, 5/15min for auth)
 - ✅ Input validation and sanitization
-- ✅ XSS protection
-- ✅ NoSQL injection prevention
 - ✅ CORS configuration
 - ✅ Security headers with Helmet
 - ✅ Environment variable protection
-- ✅ Token blacklist on logout (prevents token reuse)
 
 ### UI/UX
 
@@ -67,7 +56,7 @@ A production-ready full-stack user management system with authentication, role-b
 - **Authentication:** JWT (jsonwebtoken)
 - **Password Hashing:** bcrypt
 - **Validation:** Joi
-- **Security:** helmet, cors, xss-clean, express-mongo-sanitize, express-rate-limit
+- **Security:** helmet, cors, express-rate-limit
 - **Testing:** Jest
 - **Logging:** Morgan
 
@@ -93,8 +82,7 @@ backend/
 │   ├── controllers/        # Request handlers
 │   │   ├── authController.js
 │   │   ├── userController.js
-│   │   ├── adminController.js
-│   │   └── healthController.js
+│   │   └── adminController.js
 │   ├── models/            # Mongoose schemas
 │   │   └── User.js
 │   ├── routes/            # API routes
@@ -105,9 +93,7 @@ backend/
 │   ├── services/          # Business logic
 │   │   ├── authService.js
 │   │   ├── userService.js
-│   │   ├── adminService.js
-│   │   ├── tokenBlacklist.js
-│   │   └── tokenBlacklistRedis.js
+│   │   └──  adminService.js
 │   ├── middlewares/       # Custom middleware
 │   │   ├── auth.js
 │   │   ├── validate.js
@@ -213,9 +199,6 @@ User → Request → Attach token → Verify JWT → Allow access
 - Tokens include user ID, email, and role
 - Automatic token verification on protected routes
 - Token stored in localStorage (client-side)
-- **Token blacklist on logout (prevents token reuse after logout)**
-- Blacklisted tokens automatically cleaned up after expiration
-- In-memory storage (default) or Redis for production
 
 #### 4. **Rate Limiting Strategy**
 
